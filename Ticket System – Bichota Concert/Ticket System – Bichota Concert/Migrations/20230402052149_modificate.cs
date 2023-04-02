@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Ticket_System___Bichota_Concert.Migrations
 {
     /// <inheritdoc />
-    public partial class initialDataBase : Migration
+    public partial class modificate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,14 +16,21 @@ namespace Ticket_System___Bichota_Concert.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CodTicket = table.Column<int>(type: "int", nullable: false),
                     UseDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsUsed = table.Column<bool>(type: "bit", nullable: false),
-                    EntranceGate = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    IsUsed = table.Column<bool>(type: "bit", nullable: true),
+                    EntranceGate = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Tickets", x => x.Id);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tickets_Id",
+                table: "Tickets",
+                column: "Id",
+                unique: true);
         }
 
         /// <inheritdoc />

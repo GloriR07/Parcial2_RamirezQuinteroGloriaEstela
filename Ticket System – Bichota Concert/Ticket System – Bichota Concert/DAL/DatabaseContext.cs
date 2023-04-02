@@ -11,7 +11,13 @@ namespace Ticket_System___Bichota_Concert.DAL
         {
         }
 
-        public DbSet<Ticket> Tickets { get; set; } 
-                  
+        public DbSet<Ticket> Ticket { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Ticket>().HasIndex(t => t.CodTicket).IsUnique();
+
+
+        }
     }
 }

@@ -12,8 +12,8 @@ using Ticket_System___Bichota_Concert.DAL;
 namespace Ticket_System___Bichota_Concert.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230401235001_initialDataBase")]
-    partial class initialDataBase
+    [Migration("20230402052149_modificate")]
+    partial class modificate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,16 +31,22 @@ namespace Ticket_System___Bichota_Concert.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("EntranceGate")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("CodTicket")
+                        .HasColumnType("int");
 
-                    b.Property<bool>("IsUsed")
+                    b.Property<string>("EntranceGate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("IsUsed")
                         .HasColumnType("bit");
 
                     b.Property<DateTime>("UseDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Id")
+                        .IsUnique();
 
                     b.ToTable("Tickets");
                 });
